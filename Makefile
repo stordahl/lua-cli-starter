@@ -8,16 +8,10 @@
 .PHONY: build
 
 build:
-	rm -rf build
-	mkdir build
-	luastatic \
-		src/app.lua \
-		$$(brew --prefix lua)/lib/liblua.a -I$$(brew --prefix lua)/include/lua \
-		-o build/app
-	mv app.luastatic.c build/
+	bash ./scripts/build.sh
 
-install: build
-	sudo cp build/app /usr/local/bin
+install: 
+	bash ./scripts/install.sh
 
 uninstall:
 	sudo rm /usr/local/bin/app
